@@ -1,0 +1,25 @@
+﻿@model List<MyMovies.Models.Movie>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <h1>Welcome to my movies page</h1>
+    @foreach (var movie in @Model)
+    {
+        <h1>The title is: @movie.Title</h1>
+        <h1>The ganre is: @movie.Ganre</h1>
+        <h1>The description is: @movie.Description</h1>
+        <h1>The duration is: @movie.Duration min.</h1>
+        <img src="@movie.ImageURL" alt="Alternate Text" />
+    }
+
+
+
+
+</body>
+</html>     
