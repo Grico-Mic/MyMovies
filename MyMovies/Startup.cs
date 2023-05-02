@@ -50,7 +50,7 @@ namespace MyMovies
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Movies}/{action=Index}/{id?}");
+                    pattern: "{controller=Movies}/{action=Overview}/{id?}");
             });
         }
     }
