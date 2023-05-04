@@ -1,0 +1,20 @@
+﻿@model MyMovies.Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+   
+    
+    <h1>@Model.Title</h1>
+    <img src="@Model.ImageURL" alt="@Model.Title" />
+    <h2>Description</h2>
+    <p>@Model.Description</p>
+    <p>Ganre:@Model.Ganre</p>
+    <p>Durations:@Model.Duration min.</p>
+
+
+</div>
+
+ 

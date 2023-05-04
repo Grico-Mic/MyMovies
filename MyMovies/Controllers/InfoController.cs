@@ -18,5 +18,11 @@ namespace MyMovies.Controllers
         {
             return View();
         }
+
+        public IActionResult ErrorNotFound()
+
+        {
+            return View();
+        }
     }
 }
