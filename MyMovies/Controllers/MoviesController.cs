@@ -1,19 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Movies.Servises;
-using MyMovies.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MyMovies.Servises.Interfaces;
+
 
 namespace MyMovies.Controllers
 {
     public class MoviesController : Controller
     {
-        public MoviesServise _servise { get; set; }
-        public MoviesController()
+        public IMoviesServise _servise { get; set; }
+        public MoviesController(IMoviesServise service)
         {
-            _servise = new MoviesServise();
+            _servise = service;
         }
 
         public IActionResult Overview()

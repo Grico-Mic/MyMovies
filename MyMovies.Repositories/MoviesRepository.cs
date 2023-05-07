@@ -1,11 +1,11 @@
 ﻿using MyMovies.Models;
-using System;
+using MyMovies.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MyMovies.Repositories
 {
-    public class MoviesRepository
+    public class MoviesRepository : IMoviesRepository
     {
         public List<Movie> Movies { get; set; }
 
