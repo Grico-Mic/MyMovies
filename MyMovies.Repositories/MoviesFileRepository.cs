@@ -9,20 +9,41 @@ namespace MyMovies.Repositories
 {
     public class MoviesFileRepository : IMoviesRepository
     {
+        const string Path = "Movies.txt";
         public MoviesFileRepository()
         {
-            var path = "Movies.txt";
-
-            if (!File.Exists(path))
+            if (!File.Exists(Path))
             {
-                File.WriteAllText(path, "[]");
+                File.WriteAllText(Path, "[]");
             }
 
-            var result = File.ReadAllText(path);
+            var result = File.ReadAllText(Path);
             var deserialzedList = JsonConvert.DeserializeObject<List<Movie>>(result);
             Movies = deserialzedList;
         }
         public List<Movie> Movies { get; set; }
+
+       
+
+        public void Create(Movie movie)
+        {
+          
+            movie.Id = GenerateId();
+            Movies.Add(movie);
+            SaveChanges();
+        }
+
+        private int GenerateId()
+        {
+            var maxId = 0;
+
+            if (Movies.Any())
+            {
+                maxId = Movies.Max(x => x.Id);
+
+            }
+            return maxId + 1; 
+        }
 
         public List<Movie> GetAll()
         {
@@ -32,6 +53,12 @@ namespace MyMovies.Repositories
         public Movie GetById(int id)
         {
             return Movies.FirstOrDefault(x => x.Id == id);
+        }
+
+        private void SaveChanges()
+        {
+            var seriliazed = JsonConvert.SerializeObject(Movies);
+            File.WriteAllText(Path, seriliazed);
         }
     }
 }

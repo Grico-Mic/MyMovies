@@ -46,5 +46,10 @@ namespace MyMovies.Repositories
         {
             return Movies;
         }
+
+        public void Create(Movie movie)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

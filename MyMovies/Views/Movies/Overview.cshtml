@@ -1,28 +1,28 @@
-﻿@model List<MyMovies.Models.Movie>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<MyMovies.Models.Movie>
 
 @{
     ViewBag.Title = "Overview";
 }
 
 
-<div class="container" >
-    
-        <div class="row">
+<div class="container">
 
-            @foreach (var movie in Model)
-            {
-                <div class="col-md-3 d-flex pb-5">
-                    <div class="card">
-                        <img src="@movie.ImageURL" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">@movie.Title</h5>
-                            <p class="card-text">@movie.Description</p>
-                            <a href="/Movies/Details/@movie.Id" class="btn btn-primary stretched-link">See more...</a>
-                        </div>
+    <div class="row">
+
+        @foreach (var movie in Model)
+        {
+            <div class="col-md-3 d-flex pb-5">
+                <div class="card">
+                    <img src="@movie.ImageURL" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.Title</h5>
+                        <p class="card-text">@movie.Description</p>
+                        <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id"  class="btn btn-primary stretched-link">See more...</a>
                     </div>
                 </div>
-            }
-        </div>
-    
+            </div>
+        }
+    </div>
+
 </div>
- 

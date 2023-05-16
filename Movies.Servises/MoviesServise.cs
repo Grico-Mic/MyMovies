@@ -23,6 +23,11 @@ namespace Movies.Servises
         {
             return _moviesRepository.GetById(id);
         }
+
+        public void CreateMovie(Movie movie)
+        {
+            _moviesRepository.Create(movie);
+        }
     }
        
 }

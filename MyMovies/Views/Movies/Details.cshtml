@@ -1,12 +1,14 @@
-﻿@model MyMovies.Models.Movie
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model MyMovies.Models.Movie
 
 @{
     ViewBag.Title = "Details";
 }
 
 <div class="container">
-   
-    
+
+
     <h1>@Model.Title</h1>
     <img src="@Model.ImageURL" alt="@Model.Title" />
     <h2>Description</h2>
@@ -17,7 +19,6 @@
 
 </div>
 <div class="container">
-    <a class="btn btn-primary" href="/Movies/Overview" role="button">Back</a>
+    <a class="btn btn-primary" asp-controller="Movies"  asp-action="Overview"   role="button">Back</a>
 </div>
 
- 

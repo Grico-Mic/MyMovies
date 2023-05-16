@@ -8,6 +8,6 @@ namespace MyMovies.Servises.Interfaces
     {
         public List<Movie> GetAllMovies();
         public Movie GetMovieById(int id);
-
+        void CreateMovie(Movie movie);
     }
 }

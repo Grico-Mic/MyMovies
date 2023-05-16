@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyMovies.Models;
 using MyMovies.Servises.Interfaces;
 
 
@@ -29,6 +30,25 @@ namespace MyMovies.Controllers
 
         return View(movie);
         }
-    
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Movie movie)
+        {
+            if (ModelState.IsValid)
+            {
+                _servise.CreateMovie(movie);
+                return RedirectToAction("Overview");
+            }
+            
+            return View(movie);
+        }
+
     }
 }
+ 

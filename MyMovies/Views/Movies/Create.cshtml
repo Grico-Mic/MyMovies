@@ -1,0 +1,46 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model MyMovies.Models.Movie
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<form asp-controller="Movies" asp-action="Create" method="post">
+    @*<div asp-validation-summary="All" class="text-danger"></div>*@
+    <div class="form-group">
+        <label class="control-label" asp-for="Title">Title</label>
+        <input type="text" asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="Description">Description</label>
+        <textarea type="text" asp-for="Description" class="form-control" cols="20" rows="5"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="Ganre">Ganre</label>
+        <input type="text" asp-for="Ganre" class="form-control" />
+        <span asp-validation-for="Ganre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="Duration">Duration</label>
+        <input type="text" asp-for="Duration" class="form-control" />
+        <span asp-validation-for="Duration" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label" asp-for="ImageURL">ImageUrl</label>
+        <input type="text" asp-for="ImageURL" class="form-control" />
+        <span asp-validation-for="ImageURL" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+
+
+
+
+
+
+
+
+</form>
