@@ -24,7 +24,7 @@ namespace MyMovies
         {
             services.AddControllersWithViews();
             services.AddTransient<IMoviesServise,MoviesServise>();
-            services.AddTransient<IMoviesRepository, MoviesFileRepository>();
+            services.AddTransient<IMoviesRepository, MoviesSqlRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
