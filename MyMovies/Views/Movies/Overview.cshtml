@@ -4,7 +4,15 @@
 @{
     ViewBag.Title = "Overview";
 }
+<form action="/Movies/Overview" method="get" class="form-inline my-2 my-lg-0">
+    <div class="form-group mr-sm-2">
+        <input type="text" name="Title" value="" class="form-control" placeholder="Search"/>
+    </div>
+    <div class="form-group my-2 my-sm-0">
+        <input type="submit" value="Search" class="btn btn-primary" />
 
+    </div>
+</form>
 
 <div class="container">
 

@@ -28,6 +28,18 @@ namespace Movies.Servises
         {
             _moviesRepository.Create(movie);
         }
+
+        public List<Movie> GetMovieByTitle(string title)
+        {
+            if (title == null)
+            {
+                return _moviesRepository.GetAll();
+            }
+            else
+            {
+                return _moviesRepository.GetMovieByTitle(title);
+            }
+        }
     }
        
 }
