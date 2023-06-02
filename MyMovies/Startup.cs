@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,9 +23,10 @@ namespace MyMovies
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MyMoviesDbContext>(x => x.UseSqlServer("Server=DESCTOP-V9GRIC;Database=MyMovies;Trusted_Connection=true;"));
             services.AddControllersWithViews();
             services.AddTransient<IMoviesServise,MoviesServise>();
-            services.AddTransient<IMoviesRepository, MoviesSqlRepository>();
+            services.AddTransient<IMoviesRepository, MoviesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyMovies.Models
@@ -24,5 +25,7 @@ namespace MyMovies.Models
 
         [Required(ErrorMessage = "This field is required")]
         public string ImageURL { get; set; }
+        [Required]
+        public DateTime DateCreated { get; set; }
     }
 }
