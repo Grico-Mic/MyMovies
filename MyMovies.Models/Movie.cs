@@ -7,7 +7,10 @@ namespace MyMovies.Models
 {
     public class Movie
     {
-
+        public Movie()
+        {
+            this.DateCreated = DateTime.Now;
+        }
         public int Id { get; set; }
 
         [Required (ErrorMessage ="This field is required")]

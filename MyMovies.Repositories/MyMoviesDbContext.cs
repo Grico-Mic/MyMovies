@@ -11,5 +11,6 @@ namespace MyMovies.Repositories
         }
 
         public DbSet<Movie> MyMovies { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
