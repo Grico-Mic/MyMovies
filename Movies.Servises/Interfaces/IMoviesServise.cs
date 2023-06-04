@@ -10,5 +10,6 @@ namespace MyMovies.Servises.Interfaces
         public List<Movie> GetMovieByTitle(string title);
         public Movie GetMovieById(int id);
         void CreateMovie(Movie movie);
+        void Delete(int id);
     }
 }

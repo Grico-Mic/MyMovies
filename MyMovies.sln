@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.33130.400
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyMovies", "MyMovies\MyMovies.csproj", "{B71548FB-C5E0-4B49-B4CE-9A7D81A5A1BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMovies.Servises", "Movies.Servises\MyMovies.Servises.csproj", "{DF0110C4-AAA0-4F7E-B24A-BFF2649CD2F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyMovies.Servises", "Movies.Servises\MyMovies.Servises.csproj", "{DF0110C4-AAA0-4F7E-B24A-BFF2649CD2F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMovies.Models", "MyMovies.Models\MyMovies.Models.csproj", "{0523ECF1-FB58-4F5A-8BE2-514C608C881B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyMovies.Models", "MyMovies.Models\MyMovies.Models.csproj", "{0523ECF1-FB58-4F5A-8BE2-514C608C881B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMovies.Repositories", "MyMovies.Repositories\MyMovies.Repositories.csproj", "{6898D151-236B-4FAA-B8FA-FBD55853B096}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyMovies.Repositories", "MyMovies.Repositories\MyMovies.Repositories.csproj", "{6898D151-236B-4FAA-B8FA-FBD55853B096}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMovies.Common", "MyMovies.Common\MyMovies.Common.csproj", "{0A62F76B-FA25-43E7-B7C8-5BBE9C053E64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6898D151-236B-4FAA-B8FA-FBD55853B096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6898D151-236B-4FAA-B8FA-FBD55853B096}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6898D151-236B-4FAA-B8FA-FBD55853B096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A62F76B-FA25-43E7-B7C8-5BBE9C053E64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A62F76B-FA25-43E7-B7C8-5BBE9C053E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A62F76B-FA25-43E7-B7C8-5BBE9C053E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A62F76B-FA25-43E7-B7C8-5BBE9C053E64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

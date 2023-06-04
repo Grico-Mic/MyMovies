@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MyMovies.Common\MyMovies.Common.csproj" />
     <ProjectReference Include="..\MyMovies.Repositories\MyMovies.Repositories.csproj" />
   </ItemGroup>
 
