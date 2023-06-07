@@ -48,6 +48,7 @@ namespace MyMovies.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            
             return View();
         }
       
@@ -80,6 +81,40 @@ namespace MyMovies.Controllers
                 return RedirectToAction("InternalError", "Info");
             }
            
+        }
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+           var movie =  _servise.GetMovieById(id);
+            if (movie == null)
+            {
+                return RedirectToAction("ManageOverview", new { ErrorMessage = "Movie not found." });
+            }
+            return View(movie);
+        }
+        [HttpPost]
+        public IActionResult Update(Movie movie)
+        {
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _servise.Update(movie);
+                    return RedirectToAction("ManageOverview", new { SuccessMessage = "The movie was updated successfully." });
+                }
+                catch (NotFoundException ex)
+                {
+                    return RedirectToAction("ManageOverview", new { ErrorMessage = ex.Message });
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("InternalError", "Info");
+                }
+                
+            }
+
+            return View(movie);
         }
     }
 }

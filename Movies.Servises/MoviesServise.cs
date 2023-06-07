@@ -28,6 +28,7 @@ namespace Movies.Servises
 
         public void CreateMovie(Movie movie)
         {
+            movie.DateCreated = DateTime.Now;
             _moviesRepository.Create(movie);
         }
 
@@ -57,7 +58,25 @@ namespace Movies.Servises
             }
         }
 
-       
+        public void Update(Movie movie)
+        {
+            var updatedMovie = _moviesRepository.GetById(movie.Id);
+            if (updatedMovie != null)
+            {
+                updatedMovie.Title = movie.Title;
+                updatedMovie.Description = movie.Description;
+                updatedMovie.Ganre = movie.Ganre;
+                updatedMovie.ImageURL = movie.ImageURL;
+                updatedMovie.DateUpdated = DateTime.Now;
+
+                _moviesRepository.Update(updatedMovie);
+            }
+            else
+            {
+                throw new NotFoundException($"The movie that you want to update was no found.");
+            }
+           
+        }
     }
        
 }

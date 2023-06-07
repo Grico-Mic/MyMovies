@@ -1,38 +1,40 @@
-﻿
-@model MyMovies.Models.Movie
+﻿@model MyMovies.Models.Movie;
+
+
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Update";
 }
 
-<form asp-controller="Movies" asp-action="Create" method="post">
-    @*<div asp-validation-summary="All" class="text-danger"></div>*@
+<form asp-controller="Movies" asp-action="Update" method="post">
+   
     <div class="form-group">
         <label class="control-label" asp-for="Title">Title</label>
-        <input type="text" asp-for="Title" class="form-control" />
+        <input type="text" asp-for="Title" class="form-control" required/>
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label class="control-label" asp-for="Description">Description</label>
-        <textarea type="text" asp-for="Description" class="form-control" cols="20" rows="5"></textarea>
+        <textarea type="text" asp-for="Description" class="form-control" cols="20" rows="5"required></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label class="control-label" asp-for="Ganre">Ganre</label>
-        <input type="text" asp-for="Ganre" class="form-control" />
+        <input type="text" asp-for="Ganre" class="form-control" required />
         <span asp-validation-for="Ganre" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label class="control-label" asp-for="Duration">Duration</label>
-        <input type="text" asp-for="Duration" class="form-control" />
+        <input type="text" asp-for="Duration" class="form-control" required/>
         <span asp-validation-for="Duration" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label class="control-label" asp-for="ImageURL">ImageUrl</label>
-        <input type="text" asp-for="ImageURL" class="form-control" />
+        <input type="text" asp-for="ImageURL" class="form-control" required/>
         <span asp-validation-for="ImageURL" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <a class="btn btn-danger" href="/Movies/ManageOverview">Cancel</a>
+        <input type="submit" value="Save" class="btn btn-primary" />
     </div>
 </form>

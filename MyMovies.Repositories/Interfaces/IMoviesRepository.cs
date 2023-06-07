@@ -10,5 +10,6 @@ namespace MyMovies.Repositories.Interfaces
         void Create(Movie movie);
         List<Movie> GetMovieByTitle(string title);
         void Delete(Movie movie);
+        void Update(Movie movie);
     }
 }
