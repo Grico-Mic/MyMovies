@@ -1,4 +1,5 @@
 ﻿using MyMovies.Models;
+using MyMovies.Servises.DtoModels;
 using System.Collections.Generic;
 
 
@@ -10,7 +11,7 @@ namespace MyMovies.Servises.Interfaces
         public List<Movie> GetMovieByTitle(string title);
         public Movie GetMovieById(int id);
         void CreateMovie(Movie movie);
-        void Delete(int id);
-        void Update(Movie movie);
+        StatusModel Delete(int id);
+        StatusModel Update(Movie movie);
     }
 }
