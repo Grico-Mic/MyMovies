@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Movies.Servises;
 using MyMovies.Repositories;
 using MyMovies.Repositories.Interfaces;
+using MyMovies.Servises;
 using MyMovies.Servises.Interfaces;
 
 namespace MyMovies
@@ -23,10 +25,21 @@ namespace MyMovies
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             services.AddDbContext<MyMoviesDbContext>(x => x.UseSqlServer("Server=DESCTOP-V9GRIC;Database=MyMovies;Trusted_Connection=true;"));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+
             services.AddControllersWithViews();
+
             services.AddTransient<IMoviesServise,MoviesServise>();
+            services.AddTransient<IAuthService, AuthService>();
+
             services.AddTransient<IMoviesRepository, MoviesRepository>();
+            services.AddTransient<IUsersRepository, UsersRepository>();
+
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
         }
@@ -49,6 +62,7 @@ namespace MyMovies
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

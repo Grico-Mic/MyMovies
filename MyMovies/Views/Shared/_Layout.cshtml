@@ -22,9 +22,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/Info/ContactUs">Contact us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Movies/ManageOverview">Manage Movies</a>
-                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Movies/ManageOverview">Manage Movies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">@User.FindFirst("Username").Value</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Auth/SignIn">Sign In</a>
+                        </li>
+                    }
+
                 </ul>
             </div>
         </nav>
