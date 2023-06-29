@@ -17,12 +17,18 @@ namespace MyMovies.Controllers
         {
             return View();
         }
+        public IActionResult SignOut()
+        {
+            _authService.SignOut(HttpContext);
+            return RedirectToAction("Overview", "Movies");
+           
+        }
         [HttpPost]
         public IActionResult SignIn(AuthSignInModel authSignInModel)
         {
             if (ModelState.IsValid)
             {
-               var response = _authService.SignIn(authSignInModel.Username, authSignInModel.Password,HttpContext);
+               var response = _authService.SignIn(authSignInModel.Username, authSignInModel.Password,authSignInModel.IsPersistent, HttpContext);
                 if (response.IsSuccessful == true)
                 {
                 return RedirectToAction("Overview", "Movies");

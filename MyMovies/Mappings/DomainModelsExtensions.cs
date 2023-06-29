@@ -51,5 +51,15 @@ namespace MyMovies.Mappings
                 Duration = viewModel.Duration
             };
         }
+
+        public static UserDetailsModel ToDetailsModel(this User viewModel)
+        {
+            return new UserDetailsModel()
+            {
+                Username = viewModel.Username,
+                Address = viewModel.Address,
+                Email = viewModel.Email
+            };
+        }
     }
 }

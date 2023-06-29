@@ -11,5 +11,7 @@ namespace MyMovies.ViewModels
         //[RegularExpression("/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8}/g",
         // ErrorMessage = "Password must meet requirements")]
         public string Password { get; set; }
+        public bool IsPersistent { get; set; }
+        public int MyProperty { get; set; }
     }
 }
