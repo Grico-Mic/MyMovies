@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyMovies.Common.Exceptions;
 using MyMovies.Mappings;
 using MyMovies.Models;
@@ -10,14 +11,16 @@ using System.Linq;
 
 namespace MyMovies.Controllers
 {
+    [Authorize]
     public class MoviesController : Controller
     {
+       
         public IMoviesServise _servise { get; set; }
         public MoviesController(IMoviesServise service)
         {
             _servise = service;
         }
-
+        [AllowAnonymous]
         public IActionResult Overview(string title)
         {
            var movies =  _servise.GetMovieByTitle(title);
@@ -27,6 +30,7 @@ namespace MyMovies.Controllers
             return View(moviesOverviewModel);
 
         }
+      
         public IActionResult ManageOverview(string errorMessage, string successMessage)
         {
             ViewBag.ErrorMessage = errorMessage;
@@ -35,7 +39,8 @@ namespace MyMovies.Controllers
             var movies = _servise.GetAllMovies();
             var viewModels = movies.Select(x => x.ToManageOverviewModel()).ToList();
             return View(viewModels);
-        } 
+        }
+        [AllowAnonymous]
         public IActionResult Details(int id)
         { 
             try
@@ -54,14 +59,16 @@ namespace MyMovies.Controllers
                 return RedirectToAction("ErrorGeneral", "Info");
             }
         }
-
+       
         [HttpGet]
+       
         public IActionResult Create()
         {
             
             return View();
         }
-      
+       
+
         [HttpPost]
         public IActionResult Create(MovieCreateModel movie)
         {
@@ -75,6 +82,7 @@ namespace MyMovies.Controllers
             return View(movie);
         }
 
+        
         public IActionResult Delete(int id)
         {
             try
@@ -96,6 +104,7 @@ namespace MyMovies.Controllers
            
         }
         [HttpGet]
+        
         public IActionResult Update(int id)
         {
            var movie =  _servise.GetMovieById(id);
@@ -105,6 +114,7 @@ namespace MyMovies.Controllers
             }
             return View(movie.ToUpdateModel());
         }
+
         [HttpPost]
         public IActionResult Update(MovieUpdateModel movie)
         {
