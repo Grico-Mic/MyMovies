@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using MyMovies.Models;
 using MyMovies.Repositories.Interfaces;
 using MyMovies.Servises.DtoModels;
 using MyMovies.Servises.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -39,7 +41,7 @@ namespace MyMovies.Servises
 
                 Task.Run(() => httpContext.SignInAsync(principal, authProps)).GetAwaiter().GetResult();
 
-                response.IsSuccessful = true;
+                
             }
             else
             {
@@ -55,6 +57,33 @@ namespace MyMovies.Servises
         public void SignOut(HttpContext httpContext)
         {
             Task.Run(() => httpContext.SignOutAsync()).GetAwaiter().GetResult();
+        }
+
+        public StatusModel SignUp(User toSignUpModel)
+        {
+            var response = new StatusModel();
+            var user =_usersRepository.CheckIfExist(toSignUpModel.Username,toSignUpModel.Email);
+
+            if (user)
+            {
+                response.IsSuccessful = false;
+                response.Message = "User with username or email already exist";
+                return response;
+
+            }
+                var newUser = new User()
+                {
+                    Username = toSignUpModel.Username,
+                    Email = toSignUpModel.Email,
+                    Address = toSignUpModel.Address,
+                    Password = toSignUpModel.Password,
+                    DateCreated = DateTime.Now
+                };
+
+            _usersRepository.Add(newUser);
+
+           
+            return response;
         }
     }
    

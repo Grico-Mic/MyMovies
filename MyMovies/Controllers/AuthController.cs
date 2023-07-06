@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyMovies.Mappings;
+using MyMovies.Servises.DtoModels;
 using MyMovies.Servises.Interfaces;
 using MyMovies.ViewModels;
 
@@ -48,7 +50,35 @@ namespace MyMovies.Controllers
                 }
             }
             return View(authSignInModel);
-        }  
+        }
+        [HttpGet]
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SignUp(AuthSignUpModel authSignUpModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = _authService.SignUp(authSignUpModel.ToSignUpModel());
+                if (response.IsSuccessful)
+                {
+                return RedirectToAction("SignIn");
+                }
+                else
+                {
+                    ModelState.AddModelError("", response.Message);
+                    return View(authSignUpModel);
+                }
+                
+            }
+            else
+            {
+                return View(authSignUpModel);
+            }
+            
+        }
     }
 }
  

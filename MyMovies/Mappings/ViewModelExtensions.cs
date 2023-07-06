@@ -33,6 +33,18 @@ namespace MyMovies.Mappings
                 Duration = viewModel.Duration
             };
         }
+
+        public static User ToSignUpModel(this AuthSignUpModel viewModel)
+        {
+            return new User()
+            {
+
+                Username = viewModel.Username,
+                Password = viewModel.Password,
+                Address = viewModel.Address,
+                Email = viewModel.Email
+            };
+        }
     }
 }
  

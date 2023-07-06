@@ -58,7 +58,7 @@ namespace Movies.Servises
             else
             {
                 _moviesRepository.Delete(movie);
-                response.IsSuccessful = true;
+               
             }
             
                 return response;
@@ -78,7 +78,7 @@ namespace Movies.Servises
                 updatedMovie.DateUpdated = DateTime.Now;
 
                 _moviesRepository.Update(updatedMovie);
-                response.IsSuccessful = true;
+               
             }
             else
             {

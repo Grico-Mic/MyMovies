@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using MyMovies.Models;
 using MyMovies.Servises.DtoModels;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace MyMovies.Servises.Interfaces
     {
          StatusModel SignIn(string username, string password, bool IsPersistent,HttpContext httpContext);
         void SignOut(HttpContext httpContext);
+        StatusModel SignUp(User toSignUpModel);
     }
 }
