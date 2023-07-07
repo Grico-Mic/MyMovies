@@ -31,7 +31,8 @@ namespace MyMovies.Servises
                     new Claim("Id",user.Id.ToString()),
                     new Claim("Username",user.Username),
                     new Claim("Address",user.Address),
-                    new Claim("Email",user.Email)
+                    new Claim("Email",user.Email),
+                    new Claim("IsAdmin",user.IsAdmin.ToString())
 
                 };
 
@@ -41,7 +42,6 @@ namespace MyMovies.Servises
 
                 Task.Run(() => httpContext.SignInAsync(principal, authProps)).GetAwaiter().GetResult();
 
-                
             }
             else
             {

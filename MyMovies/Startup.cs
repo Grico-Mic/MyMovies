@@ -36,9 +36,20 @@ namespace MyMovies
                     options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                     options.SlidingExpiration = true;
                     options.LoginPath = "/Auth/SignIn";
+                    options.AccessDeniedPath = "/Auth/AccessDenied";
                 }
 
                 );
+            
+            services.AddAuthorization(options =>
+                {
+                    options.AddPolicy("IsAdmin", policy =>
+                    {
+                        policy.RequireClaim("IsAdmin", "True");
+         
+                    });
+                });
+
 
 
             services.AddControllersWithViews();

@@ -79,6 +79,11 @@ namespace MyMovies.Controllers
             }
             
         }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }
  

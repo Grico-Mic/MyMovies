@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace MyMovies.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "IsAdmin")]
     public class MoviesController : Controller
     {
        

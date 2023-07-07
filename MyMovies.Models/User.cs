@@ -16,5 +16,7 @@ namespace MyMovies.Models
         public string Email { get; set; }
         [Required]
         public DateTime DateCreated { get; set; }
+        [Required]
+        public bool IsAdmin { get; set; }
     }
 }
