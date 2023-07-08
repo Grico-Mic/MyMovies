@@ -24,7 +24,7 @@ namespace MyMovies.Servises
         {
             var response = new StatusModel();
             var user = _usersRepository.GetByUsername(username);
-            if (user != null && user.Password == password)
+            if (user != null && BCrypt.Net.BCrypt.Verify(password ,user.Password))
             {
                 var claims = new List<Claim>()
                 {
@@ -76,7 +76,7 @@ namespace MyMovies.Servises
                     Username = toSignUpModel.Username,
                     Email = toSignUpModel.Email,
                     Address = toSignUpModel.Address,
-                    Password = toSignUpModel.Password,
+                    Password =BCrypt.Net.BCrypt.HashPassword(toSignUpModel.Password),
                     DateCreated = DateTime.Now
                 };
 
