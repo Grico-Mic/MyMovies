@@ -1,10 +1,5 @@
 ﻿using MyMovies.Models;
 using MyMovies.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace MyMovies.Mappings
 {
     public static class DomainModelsExtensions
@@ -59,6 +54,16 @@ namespace MyMovies.Mappings
                 Username = viewModel.Username,
                 Address = viewModel.Address,
                 Email = viewModel.Email
+            };
+        }
+
+        public static UsersManageUsersModel ToManageUsersModel(this User viewModel)
+        {
+            return new UsersManageUsersModel()
+            {
+                Id = viewModel.Id,
+                Username = viewModel.Username,
+               IsAdmin = viewModel.IsAdmin
             };
         }
     }

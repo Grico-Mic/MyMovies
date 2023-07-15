@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MyMovies.ViewModels.UsersManageUsersModel>
+
+@{
+    ViewData["Title"] = "ManageUsers";
+}
+
+<h1>ManageUsers</h1>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.SuccessMessage
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAdmin)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => user.IsAdmin)
+                </td>
+                <td>
+                    @if (user.IsAdmin)
+                    {
+                        <a class="text-danger" href="/Users/ToggleAdminRole/@user.Id">Remove Admin Role</a>
+                    }
+                    else
+                    {
+                        <a class="text-success" href="/Users/ToggleAdminRole/@user.Id">Add Admin Role</a>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="/Users/Delete/@user.Id" onclick="return confirm('Are you sure?')">Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,9 +1,7 @@
 ﻿using MyMovies.Models;
 using MyMovies.Repositories.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace MyMovies.Repositories
 {
@@ -18,13 +16,25 @@ namespace MyMovies.Repositories
 
         public void Add(User newUser)
         {
-            _context.Add(newUser);
+            _context.Users.Add(newUser);
             _context.SaveChanges();
         }
 
         public bool CheckIfExist(string username, string email)
         {
             return _context.Users.Any(x => x.Username == username || x.Email == email);
+        }
+
+        public void Delete(User user)
+        {
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+
+        }
+
+        public List<User> GetAll()
+        {
+            return _context.Users.ToList();
         }
 
         public User GetById(int userId)
@@ -37,9 +47,11 @@ namespace MyMovies.Repositories
            return  _context.Users.FirstOrDefault(x => x.Username == username);
         }
 
-       
-        
+        public void Update(User user)
+        {
+            _context.Users.Update(user);
+            _context.SaveChanges();
 
-       
+        }
     }
 }
