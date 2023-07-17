@@ -60,6 +60,7 @@ namespace MyMovies
 
             services.AddTransient<IMoviesRepository, MoviesRepository>();
             services.AddTransient<IUsersRepository, UsersRepository>();
+            services.AddTransient<ICommentsRepository, CommentsRepository>();
 
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();

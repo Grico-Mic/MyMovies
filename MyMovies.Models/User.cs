@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyMovies.Models
@@ -18,5 +19,6 @@ namespace MyMovies.Models
         public DateTime DateCreated { get; set; }
         [Required]
         public bool IsAdmin { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace Movies.Servises
             _moviesRepository = moviesRepository;
         }
 
-        public List<Movie> GetAllMovies()
+        public List<Movie> GetAll()
         {
             return _moviesRepository.GetAll();
         }

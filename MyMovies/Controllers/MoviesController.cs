@@ -36,7 +36,7 @@ namespace MyMovies.Controllers
             ViewBag.ErrorMessage = errorMessage;
             ViewBag.SuccessMessage = successMessage;
 
-            var movies = _servise.GetAllMovies();
+            var movies = _servise.GetAll();
             var viewModels = movies.Select(x => x.ToManageOverviewModel()).ToList();
             return View(viewModels);
         }

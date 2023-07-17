@@ -80,7 +80,7 @@ namespace MyMovies.Servises
                     DateCreated = DateTime.Now
                 };
 
-            _usersRepository.Add(newUser);
+            _usersRepository.Create(newUser);
 
            
             return response;
