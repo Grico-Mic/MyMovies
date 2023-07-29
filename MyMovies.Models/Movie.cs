@@ -31,6 +31,6 @@ namespace MyMovies.Models
 
         public DateTime? DateUpdated { get; set; }
 
-        public List<Comment> Comments { get; set; }
+        public  List<Comment> Comments { get; set; }
     }
 }

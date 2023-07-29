@@ -10,8 +10,8 @@ namespace MyMovies.Repositories
 
         }
 
-        public DbSet<Movie> MyMovies { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Comment> Comments { get; set; }
+        public  DbSet<Movie> MyMovies { get; set; }
+        public  DbSet<User> Users { get; set; }
+        public  DbSet<Comment> Comments { get; set; }
     }
 }

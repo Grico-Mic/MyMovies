@@ -10,15 +10,41 @@
 
 
     <h1>@Model.Title</h1>
-    <img src="@Model.ImageURL" alt="@Model.Title" style="width : 300px"/>
+    <img src="@Model.ImageURL" alt="@Model.Title" style="width : 300px" />
     <h2>Description</h2>
     <p>@Model.Description</p>
     <p>Ganre:@Model.Ganre</p>
     <p>Durations:@Model.Duration min.</p>
+    <hr />
+    <h3>Comments</h3>
+    <hr />
 
+    @foreach (var comment in Model.Comments)
+    {
+       <div style="border:solid 1px black">
+           <p><strong>@comment.Username</strong></p>
+            <p>@comment.Message </p>
+            <p>                 -@comment.DateCreated</p>
+       </div>
+    }
 
-</div>
-<div class="container">
-    <a class="btn btn-primary" asp-controller="Movies"  asp-action="Overview"   role="button">Back</a>
-</div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="m-2" >
+          <form asp-controller="Comments" asp-action="AddComment" method="post" >
+            <input type="text" name="movieId" value="@Model.Id" hidden />
+            <div class="form-group">
+                <textarea type="text" name="comment" class="form-control" cols="20" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Comment</button>
+            </div>
+          </form>
+        </div>
+    }
 
+      <div class="container">
+            <a class="btn btn-primary" asp-controller="Movies"  asp-action="Overview"   role="button">Back</a>
+       </div>
+
+ </div>

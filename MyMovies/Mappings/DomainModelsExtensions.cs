@@ -1,5 +1,7 @@
 ﻿using MyMovies.Models;
 using MyMovies.ViewModels;
+using System.Linq;
+
 namespace MyMovies.Mappings
 {
     public static class DomainModelsExtensions
@@ -26,11 +28,23 @@ namespace MyMovies.Mappings
         {
             return new MovieDetailsModel()
             {
+                Id = movie.Id,
                 Title = movie.Title,
                 ImageURL = movie.ImageURL,
                 Description = movie.Description,
                 Ganre = movie.Ganre,
-                Duration = movie.Duration
+                Duration = movie.Duration,
+                Comments = movie.Comments.Select(x => x.ToCommentsModel()).ToList()
+            };
+        }
+        
+        public static MovieCommentModel ToCommentsModel(this Comment comment)
+        {
+            return new MovieCommentModel()
+            {
+                Message = comment.Message,
+                Username = comment.User.Username,
+                DateCreated = comment.DateCreated
             };
         }
 

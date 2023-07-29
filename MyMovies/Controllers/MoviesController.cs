@@ -46,14 +46,15 @@ namespace MyMovies.Controllers
             try
             {
                 var movie = _servise.GetMovieById(id);
-
+              
                 if (movie == null)
                 {
                     return RedirectToAction("ErrorNotFound", "Info");
                 }
-                return View(movie.ToDetailsModel());
+                var viewModel = movie.ToDetailsModel();
+                return View(viewModel);
             }
-            catch (System.Exception ex)
+            catch (Exception )
             {
 
                 return RedirectToAction("ErrorGeneral", "Info");
@@ -97,7 +98,7 @@ namespace MyMovies.Controllers
                 return RedirectToAction("ManageOverview", new { ErrorMessage = response.Message });
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return RedirectToAction("InternalError", "Info");
             }

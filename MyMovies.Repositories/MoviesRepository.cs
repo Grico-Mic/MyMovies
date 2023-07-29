@@ -1,4 +1,5 @@
-﻿using MyMovies.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MyMovies.Models;
 using MyMovies.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,13 @@ namespace MyMovies.Repositories
             
             return _context.MyMovies.Where(x => x.Title.Contains(title)).ToList();
         }
-    }
+
+        public override Movie GetById(int entityId)
+        {
+            return _context.MyMovies
+                .Include(x => x.Comments)
+                .ThenInclude(x => x.User)
+                .FirstOrDefault(x => x.Id == entityId);
+        }
+    } 
 }

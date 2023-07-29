@@ -26,7 +26,9 @@ namespace MyMovies
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            //config for LazyLoading
+           // services.AddDbContext<MyMoviesDbContext>(x => x.UseLazyLoadingProxies()
+           //.UseSqlServer("Server=DESCTOP-V9GRIC;Database=MyMovies;Trusted_Connection=true;"));
 
             services.AddDbContext<MyMoviesDbContext>(x => x.UseSqlServer("Server=DESCTOP-V9GRIC;Database=MyMovies;Trusted_Connection=true;"));
 
@@ -57,6 +59,7 @@ namespace MyMovies
             services.AddTransient<IMoviesServise,MoviesServise>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<ICommentsService, CommentsService>();
 
             services.AddTransient<IMoviesRepository, MoviesRepository>();
             services.AddTransient<IUsersRepository, UsersRepository>();

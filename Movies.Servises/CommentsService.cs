@@ -1,22 +1,32 @@
 ﻿using MyMovies.Models;
 using MyMovies.Repositories;
+using MyMovies.Repositories.Interfaces;
+using MyMovies.Servises.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MyMovies.Servises
 {
-    public class CommentsService
+    public class CommentsService :ICommentsService
     {
-        private readonly CommentsRepository _commentsRepository;
-        public CommentsService(CommentsRepository commentsRepository)
+        private readonly ICommentsRepository _commentsRepository;
+        public CommentsService(ICommentsRepository commentsRepository)
         {
-            commentsRepository = _commentsRepository;
+            _commentsRepository = commentsRepository;
         }
 
-        public List<Comment> GetAll()
+        
+
+        public void Add(string comment, int movieId, int userId)
         {
-            return _commentsRepository.GetAll();
+            var newComment = new Comment()
+            {
+                Message = comment,
+                MovieId = movieId,
+                UserId = userId,
+                DateCreated = DateTime.Now
+            };
+            _commentsRepository.Create(newComment);
         }
     }
 }
