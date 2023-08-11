@@ -5,8 +5,8 @@
     ViewBag.Title = "Create";
 }
 
-<form asp-controller="Movies" asp-action="Create" method="post">
-   
+<form asp-controller="Movies" asp-action="Create" method="post" onsubmit="return validateForm()">
+
     <div class="form-group">
         <label class="control-label" asp-for="Title">Title</label>
         <input type="text" asp-for="Title" class="form-control" />
@@ -36,3 +36,8 @@
         <input type="submit" value="Create" class="btn btn-primary" />
     </div>
 </form>
+
+
+@section Scripts{
+    <script src="~/js/Validator.js"></script>
+}

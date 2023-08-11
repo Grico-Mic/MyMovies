@@ -1,32 +1,46 @@
-﻿using MyMovies.Models;
-using MyMovies.Repositories;
+﻿using Movies.Servises;
+using MyMovies.Models;
 using MyMovies.Repositories.Interfaces;
+using MyMovies.Servises.DtoModels;
 using MyMovies.Servises.Interfaces;
 using System;
-using System.Collections.Generic;
 
 namespace MyMovies.Servises
 {
     public class CommentsService :ICommentsService
     {
         private readonly ICommentsRepository _commentsRepository;
-        public CommentsService(ICommentsRepository commentsRepository)
+        private readonly IMoviesServise _moviesServise;
+        public CommentsService(ICommentsRepository commentsRepository, IMoviesServise moviesService)
         {
             _commentsRepository = commentsRepository;
+            _moviesServise = moviesService;
         }
 
         
 
-        public void Add(string comment, int movieId, int userId)
+        public StatusModel Add(string comment, int movieId, int userId)
         {
-            var newComment = new Comment()
+            var response = new StatusModel();
+            var movies = _moviesServise.GetMovieById(movieId);
+
+            if (movies != null)
             {
-                Message = comment,
-                MovieId = movieId,
-                UserId = userId,
-                DateCreated = DateTime.Now
-            };
-            _commentsRepository.Create(newComment);
+                var newComment = new Comment()
+                {
+                    Message = comment,
+                    MovieId = movieId,
+                    UserId = userId,
+                    DateCreated = DateTime.Now
+                };
+                _commentsRepository.Create(newComment);
+            }
+            else
+            {
+                response.IsSuccessful = false;
+                response.Message = $"The movie with id {movieId} was not found";
+            }
+            return response;
         }
     }
 }

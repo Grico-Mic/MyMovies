@@ -20,8 +20,16 @@ namespace MyMovies.Controllers
         {
             var userId = int.Parse(User.FindFirst("Id").Value);
 
-            _commentsService.Add(commentCreateModel.Comment, commentCreateModel.MovieId, userId);
-            return RedirectToAction("Details","Movies" ,new {id = commentCreateModel.MovieId });
+            var response = _commentsService.Add(commentCreateModel.Comment, commentCreateModel.MovieId, userId);
+            if (response.IsSuccessful)
+            {
+               return RedirectToAction("Details","Movies" ,new {id = commentCreateModel.MovieId });
+            }
+            else
+            {
+                return RedirectToAction("ActionNotSuccessfull","Info", new { response.Message});
+            }
         }
     }
 }
+ 

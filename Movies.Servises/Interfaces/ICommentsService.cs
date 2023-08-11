@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MyMovies.Servises.DtoModels;
 
 namespace MyMovies.Servises.Interfaces
 {
     public interface ICommentsService
     {
-        void Add(string comment, int movieId, int userId);
+        StatusModel Add(string comment, int movieId, int userId);
     }
 }
