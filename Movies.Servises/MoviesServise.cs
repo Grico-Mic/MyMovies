@@ -100,7 +100,17 @@ namespace Movies.Servises
             }
             return response;
         }
-    }
-       
+
+        public List<Movie> GetMostRecentMovies(int count)
+        {
+            return  _moviesRepository.GeMostRecentMovies(count);
+           
+        }
+
+        public List<Movie> GetTopMovies(int count)
+        {
+            return _moviesRepository.GetTopMovies(count);
+        }
+    }  
 }
   

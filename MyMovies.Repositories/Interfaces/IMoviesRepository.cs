@@ -7,6 +7,7 @@ namespace MyMovies.Repositories.Interfaces
     {
        
         List<Movie> GetMovieByTitle(string title);
-     
+        List<Movie> GeMostRecentMovies(int count);
+        List<Movie> GetTopMovies(int count);
     }
 }

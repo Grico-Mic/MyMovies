@@ -5,28 +5,12 @@
     ViewBag.Title = "Overview";
 }
 
-@section Styles{ 
-    <style>
-        .recipeDescription
-        {
-            overflow:hidden;
-            display:-webkit-box;
-            -webkit-line-clamp : 10;
-            -webkit-box-orient : vertical; 
-        }
-        .movieSidebarCard
-        {
-            padding:5px;
-            border: 1px solid black;
-            margin: 5px;
-        }
-    </style>
-
-
+@section Styles{
+    <link href="/css/Sidebar.css" rel="stylesheet" />
 }
 
 
-    
+
 
 <div class="row">
     <div class="col-md-9">
@@ -66,80 +50,7 @@
         }
     </div>
     <div class="col-md-3 p-1" id="sidebar">
-        <h2>Top 5 Movies</h2>
-
-        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
-            <div class="movieSidebarCard">
-                <div>Title: Wind River</div>
-                <div>Date created: 12-08-2023</div>
-                <div>Views: 132</div>
-            </div>
-        </a>
-        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
-            <div class="movieSidebarCard">
-                <div>Title: Wind River</div>
-                <div>Date created: 12-08-2023</div>
-                <div>Views: 132</div>
-            </div>
-        </a>
-        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
-            <div class="movieSidebarCard">
-                <div>Title: Wind River</div>
-                <div>Date created: 12-08-2023</div>
-                <div>Views: 132</div>
-            </div>
-        </a>
-        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
-            <div class="movieSidebarCard">
-                <div>Title: Wind River</div>
-                <div>Date created: 12-08-2023</div>
-                <div>Views: 132</div>
-            </div>
-        </a>
-        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
-            <div class="movieSidebarCard">
-                <div>Title: Wind River</div>
-                <div>Date created: 12-08-2023</div>
-                <div>Views: 132</div>
-            </div>
-        </a>
-
-        <h2>Top 5 Recent Movies</h2>
-        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
-            <div class="movieSidebarCard">
-                <div>Title: Wind River</div>
-                <div>Date created: 12-08-2023</div>
-                <div>Views: 132</div>
-            </div>
-        </a>
-        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
-            <div class="movieSidebarCard">
-                <div>Title: Wind River</div>
-                <div>Date created: 12-08-2023</div>
-                <div>Views: 132</div>
-            </div>
-        </a>
-        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
-            <div class="movieSidebarCard">
-                <div>Title: Wind River</div>
-                <div>Date created: 12-08-2023</div>
-                <div>Views: 132</div>
-            </div>
-        </a>
-        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
-            <div class="movieSidebarCard">
-                <div>Title: Wind River</div>
-                <div>Date created: 12-08-2023</div>
-                <div>Views: 132</div>
-            </div>
-        </a>
-        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
-            <div class="movieSidebarCard">
-                <div>Title: Wind River</div>
-                <div>Date created: 12-08-2023</div>
-                <div>Views: 132</div>
-            </div>
-        </a>
+      <partial name="SidebarPartial" for="@Model.SidebarData">
     </div>
 </div>
 

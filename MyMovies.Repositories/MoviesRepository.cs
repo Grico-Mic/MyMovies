@@ -29,5 +29,16 @@ namespace MyMovies.Repositories
                 .ThenInclude(x => x.User)
                 .FirstOrDefault(x => x.Id == entityId);
         }
+
+        public List<Movie> GeMostRecentMovies(int count)
+        {
+            return _context.MyMovies.OrderByDescending(x => x.DateCreated).Take(count).ToList();
+           
+        }
+
+        public List<Movie> GetTopMovies(int count)
+        {
+            return _context.MyMovies.OrderByDescending(x => x.Views).Take(count).ToList();
+        }
     } 
 }

@@ -14,5 +14,7 @@ namespace MyMovies.Servises.Interfaces
         StatusModel Delete(int id);
         StatusModel Update(Movie movie);
         public Movie GetMovieDetails(int id);
+        List<Movie> GetMostRecentMovies(int count);
+        List<Movie> GetTopMovies(int count);
     }
 }

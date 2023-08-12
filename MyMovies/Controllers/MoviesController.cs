@@ -32,6 +32,12 @@ namespace MyMovies.Controllers
 
             overviewDataModel.OverviewMovies = moviesOverviewModel;
 
+            List<Movie> mostRecentMovies = _servise.GetMostRecentMovies(5);
+            overviewDataModel.SidebarData.MostRecentRecipes = mostRecentMovies.Select(x => x.ToSidebarModel()).ToList();
+
+            List<Movie> getTopMovies = _servise.GetTopMovies(5);
+            overviewDataModel.SidebarData.TopRecipes = getTopMovies.Select(x => x.ToSidebarModel()).ToList();
+
             return View(overviewDataModel);
 
         }
@@ -56,8 +62,18 @@ namespace MyMovies.Controllers
                 {
                     return RedirectToAction("ErrorNotFound", "Info");
                 }
-                var viewModel = movie.ToDetailsModel();
-                return View(viewModel);
+
+                var movieDataModel = new MoviesDetailsDataModel();
+
+                 movieDataModel.MovieDetails = movie.ToDetailsModel();
+
+                var mostRecentMovies = _servise.GetMostRecentMovies(5);
+                var getTopMovies = _servise.GetTopMovies(5);
+
+                movieDataModel.MovieSidebar.MostRecentRecipes = mostRecentMovies.Select(x => x.ToSidebarModel()).ToList();
+                movieDataModel.MovieSidebar.TopRecipes = getTopMovies.Select(x => x.ToSidebarModel()).ToList();
+
+                return View(movieDataModel);
             }
             catch (Exception )
             {

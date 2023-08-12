@@ -8,6 +8,6 @@ namespace MyMovies.ViewModels
     public class MovieOverviewDataModel
     {
         public List<MovieOverviewModel> OverviewMovies { get; set; }
-        public string  SidebarData { get; set; }
+        public MovieSidebarDataModel SidebarData { get; set; } = new MovieSidebarDataModel();
     }
 }

@@ -1,67 +1,62 @@
 ﻿
 
-@model MyMovies.ViewModels.MovieDetailsModel
+@model MyMovies.ViewModels.MoviesDetailsDataModel
 
 @{
     ViewBag.Title = "Details";
 }
 
 @section Styles{
-    <style>
-        .comment {
-            width: inherit;
-            padding: 10px;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-        }
-    </style>
+<link href="/css/Sidebar.css" rel="stylesheet" />
+<link href="/css/MovieDetails.css" rel="stylesheet" />    
 }
 
 
 
-<div class="container">
+<div class="row">
+    <div class="col-md-9">
+        <h1>@Model.MovieDetails.Title</h1>
+        <p>Views: @Model.MovieDetails.Views </p>
+        <img src="@Model.MovieDetails.ImageURL" alt="@Model.MovieDetails.Title" style="width : 300px" />
+        <h2>Description</h2>
+        <p>@Model.MovieDetails.Description</p>
+        <p>Ganre:@Model.MovieDetails.Ganre</p>
+        <p>Durations:@Model.MovieDetails.Duration min.</p>
+        <hr />
+        <h3>Comments</h3>
+        <hr />
 
+        @foreach (var comment in Model.MovieDetails.Comments)
+        {
+            <div class="comment">
+                <p>@comment.Message </p>
+                <p><strong>@comment.Username</strong></p>
+                <p>Date created:@comment.DateCreated</p>
+            </div>
+        }
 
-    <h1>@Model.Title</h1>
-    <p>Views: @Model.Views </p>
-    <img src="@Model.ImageURL" alt="@Model.Title" style="width : 300px" />
-    <h2>Description</h2>
-    <p>@Model.Description</p>
-    <p>Ganre:@Model.Ganre</p>
-    <p>Durations:@Model.Duration min.</p>
-    <hr />
-    <h3>Comments</h3>
-    <hr />
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="m-2">
+                <form asp-controller="Comments" asp-action="AddComment" method="post" onsubmit="return validateForm()">
+                    <input type="text" name="movieId" value="@Model.MovieDetails.Id" hidden />
+                    <div class="form-group">
+                        <textarea type="text" id="comment" name="comment" class="form-control" cols="20" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                    </div>
+                </form>
+            </div>
+        }
 
-    @foreach (var comment in Model.Comments)
-    {
-        <div class="comment">
-            <p>@comment.Message </p>
-            <p><strong>@comment.Username</strong></p>
-            <p>Date created:@comment.DateCreated</p>
+        <div class="container">
+            <a class="btn btn-primary" asp-controller="Movies" asp-action="Overview" role="button">Back</a>
         </div>
-    }
-
-    @if (User.Identity.IsAuthenticated)
-    {
-        <div class="m-2">
-            <form asp-controller="Comments" asp-action="AddComment" method="post" onsubmit="return validateForm()">
-                <input type="text" name="movieId" value="@Model.Id" hidden />
-                <div class="form-group">
-                    <textarea type="text" id="comment" name="comment" class="form-control" cols="20" rows="5" required></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Comment</button>
-                </div>
-            </form>
-        </div>
-    }
-
-    <div class="container">
-        <a class="btn btn-primary" asp-controller="Movies" asp-action="Overview" role="button">Back</a>
     </div>
-
+    <div class="col-md-3">
+        <partial name="SidebarPartial" for="@Model.MovieSidebar">
+    </div>
 </div>
 
 @section Scripts{ 
