@@ -24,10 +24,15 @@ namespace MyMovies.Controllers
         public IActionResult Overview(string title)
         {
            var movies =  _servise.GetMovieByTitle(title);
-            var listOverviewModel = new List<MovieOverviewModel>();
+           
+
+            var overviewDataModel = new MovieOverviewDataModel();
 
             var moviesOverviewModel = movies.Select(x => x.ToOverviewModel()).ToList();
-            return View(moviesOverviewModel);
+
+            overviewDataModel.OverviewMovies = moviesOverviewModel;
+
+            return View(overviewDataModel);
 
         }
       
@@ -45,7 +50,7 @@ namespace MyMovies.Controllers
         { 
             try
             {
-                var movie = _servise.GetMovieById(id);
+                var movie = _servise.GetMovieDetails(id);
               
                 if (movie == null)
                 {
@@ -60,6 +65,8 @@ namespace MyMovies.Controllers
                 return RedirectToAction("ErrorGeneral", "Info");
             }
         }
+
+        
        
         [HttpGet]
        

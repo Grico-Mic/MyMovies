@@ -27,6 +27,19 @@ namespace Movies.Servises
             return _moviesRepository.GetById(id);
         }
 
+        public Movie GetMovieDetails(int id)
+        {
+            var movie = GetMovieById(id);
+            if (movie == null)
+            {
+                return movie;
+            }
+            movie.Views ++;
+            _moviesRepository.Update(movie);
+            return movie;
+            
+        }
+
         public void CreateMovie(Movie movie)
         {
             movie.DateCreated = DateTime.Now;

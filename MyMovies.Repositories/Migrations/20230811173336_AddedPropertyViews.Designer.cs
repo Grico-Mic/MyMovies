@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyMovies.Repositories;
 
 namespace MyMovies.Repositories.Migrations
 {
     [DbContext(typeof(MyMoviesDbContext))]
-    partial class MyMoviesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230811173336_AddedPropertyViews")]
+    partial class AddedPropertyViews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

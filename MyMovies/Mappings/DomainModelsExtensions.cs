@@ -13,7 +13,8 @@ namespace MyMovies.Mappings
                 Id = movie.Id,
                 Title = movie.Title,
                 ImageURL = movie.ImageURL,
-                Description = movie.Description
+                Description = movie.Description,
+                Views = movie.Views
             };
         }
         public static MovieManageOverviewModel ToManageOverviewModel(this Movie movie)
@@ -34,7 +35,8 @@ namespace MyMovies.Mappings
                 Description = movie.Description,
                 Ganre = movie.Ganre,
                 Duration = movie.Duration,
-                Comments = movie.Comments.Select(x => x.ToCommentsModel()).ToList()
+                Comments = movie.Comments.Select(x => x.ToCommentsModel()).ToList(),
+                Views = movie.Views
             };
         }
         

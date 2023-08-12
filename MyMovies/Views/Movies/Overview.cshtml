@@ -1,43 +1,147 @@
 ﻿
-@model List<MyMovies.ViewModels.MovieOverviewModel>
+@model MyMovies.ViewModels.MovieOverviewDataModel;
 
 @{
     ViewBag.Title = "Overview";
 }
-<form action="/Movies/Overview" method="get" class="form-inline my-2 my-lg-0 ">
-    <div class="form-group mr-sm-2">
-        <input type="text" name="Title" value="" class="form-control" placeholder="Search" />
-    </div>
-    <div class="form-group my-2 my-sm-0">
-        <input type="submit" value="Search" class="btn btn-primary " />
 
-    </div>
-</form>
-@if (Model.Count == 0)
-{
-    <p class="text-danger">There is no movies here.</p>
+@section Styles{ 
+    <style>
+        .recipeDescription
+        {
+            overflow:hidden;
+            display:-webkit-box;
+            -webkit-line-clamp : 10;
+            -webkit-box-orient : vertical; 
+        }
+        .movieSidebarCard
+        {
+            padding:5px;
+            border: 1px solid black;
+            margin: 5px;
+        }
+    </style>
+
+
 }
-else
-{
-    <div class="container">
 
-        <div class="row">
 
-            @foreach (var movie in Model)
-            {
-                <div class="col-md-3 d-flex pb-5">
-                    <div class="card">
-                        <img src="@movie.ImageURL" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">@movie.Title</h5>
-                            <p class="card-text">@movie.Description</p>
-                            <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id" class="btn btn-primary stretched-link">See more...</a>
+    
+
+<div class="row">
+    <div class="col-md-9">
+        <form action="/Movies/Overview" method="get" class="form-inline my-2 my-lg-0 ">
+            <div class="form-group mr-sm-2">
+                <input type="text" name="Title" value="" class="form-control" placeholder="Search" />
+            </div>
+            <div class="form-group my-2 my-sm-0">
+                <input type="submit" value="Search" class="btn btn-primary " />
+
+            </div>
+        </form>
+        @if (Model.OverviewMovies.Count == 0)
+        {
+            <p class="text-danger">There is no movies here.</p>
+        }
+        else
+        {
+            <div class="container">
+                <div class="row">
+                    @foreach (var movie in Model.OverviewMovies)
+                    {
+                        <div class="col-md-3 d-flex pb-5">
+                            <div class="card">
+                                <img src="@movie.ImageURL" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">@movie.Title</h5>
+                                    <p class="card-text">Views: @movie.Views</p>
+                                    <p class="card-text recipeDescription">@movie.Description</p>
+                                    <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id" class="btn btn-primary stretched-link">See more...</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
-            }
-        </div>
-
+            </div>
+        }
     </div>
-}
+    <div class="col-md-3 p-1" id="sidebar">
+        <h2>Top 5 Movies</h2>
+
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
+            <div class="movieSidebarCard">
+                <div>Title: Wind River</div>
+                <div>Date created: 12-08-2023</div>
+                <div>Views: 132</div>
+            </div>
+        </a>
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
+            <div class="movieSidebarCard">
+                <div>Title: Wind River</div>
+                <div>Date created: 12-08-2023</div>
+                <div>Views: 132</div>
+            </div>
+        </a>
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
+            <div class="movieSidebarCard">
+                <div>Title: Wind River</div>
+                <div>Date created: 12-08-2023</div>
+                <div>Views: 132</div>
+            </div>
+        </a>
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
+            <div class="movieSidebarCard">
+                <div>Title: Wind River</div>
+                <div>Date created: 12-08-2023</div>
+                <div>Views: 132</div>
+            </div>
+        </a>
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
+            <div class="movieSidebarCard">
+                <div>Title: Wind River</div>
+                <div>Date created: 12-08-2023</div>
+                <div>Views: 132</div>
+            </div>
+        </a>
+
+        <h2>Top 5 Recent Movies</h2>
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
+            <div class="movieSidebarCard">
+                <div>Title: Wind River</div>
+                <div>Date created: 12-08-2023</div>
+                <div>Views: 132</div>
+            </div>
+        </a>
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
+            <div class="movieSidebarCard">
+                <div>Title: Wind River</div>
+                <div>Date created: 12-08-2023</div>
+                <div>Views: 132</div>
+            </div>
+        </a>
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
+            <div class="movieSidebarCard">
+                <div>Title: Wind River</div>
+                <div>Date created: 12-08-2023</div>
+                <div>Views: 132</div>
+            </div>
+        </a>
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
+            <div class="movieSidebarCard">
+                <div>Title: Wind River</div>
+                <div>Date created: 12-08-2023</div>
+                <div>Views: 132</div>
+            </div>
+        </a>
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="14">
+            <div class="movieSidebarCard">
+                <div>Title: Wind River</div>
+                <div>Date created: 12-08-2023</div>
+                <div>Views: 132</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
 

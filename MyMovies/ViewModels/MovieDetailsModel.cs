@@ -14,5 +14,6 @@ namespace MyMovies.ViewModels
         public string Ganre { get; set; }
         public int Duration { get; set; }
         public List<MovieCommentModel> Comments { get; set; }
+        public int Views { get; set; }
     }
 }
