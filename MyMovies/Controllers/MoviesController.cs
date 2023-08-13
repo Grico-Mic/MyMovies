@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using MyMovies.Common.Exceptions;
 using MyMovies.Mappings;
 using MyMovies.Models;
+using MyMovies.Services;
+using MyMovies.Services.Interfaces;
 using MyMovies.Servises.Interfaces;
 using MyMovies.ViewModels;
 using System;
@@ -15,10 +17,12 @@ namespace MyMovies.Controllers
     public class MoviesController : Controller
     {
        
-        public IMoviesServise _servise { get; set; }
-        public MoviesController(IMoviesServise service)
+        private IMoviesServise _servise { get; set; }
+        private ISidebarService _sidebarServise { get; set; }
+        public MoviesController(IMoviesServise service , ISidebarService _sidebarService)
         {
             _servise = service;
+            _sidebarServise = _sidebarService;  
         }
         [AllowAnonymous]
         public IActionResult Overview(string title)
@@ -32,11 +36,8 @@ namespace MyMovies.Controllers
 
             overviewDataModel.OverviewMovies = moviesOverviewModel;
 
-            List<Movie> mostRecentMovies = _servise.GetMostRecentMovies(5);
-            overviewDataModel.SidebarData.MostRecentRecipes = mostRecentMovies.Select(x => x.ToSidebarModel()).ToList();
-
-            List<Movie> getTopMovies = _servise.GetTopMovies(5);
-            overviewDataModel.SidebarData.TopRecipes = getTopMovies.Select(x => x.ToSidebarModel()).ToList();
+            
+            overviewDataModel.SidebarData = _sidebarServise.GetSidebarData();
 
             return View(overviewDataModel);
 
@@ -67,11 +68,8 @@ namespace MyMovies.Controllers
 
                  movieDataModel.MovieDetails = movie.ToDetailsModel();
 
-                var mostRecentMovies = _servise.GetMostRecentMovies(5);
-                var getTopMovies = _servise.GetTopMovies(5);
-
-                movieDataModel.MovieSidebar.MostRecentRecipes = mostRecentMovies.Select(x => x.ToSidebarModel()).ToList();
-                movieDataModel.MovieSidebar.TopRecipes = getTopMovies.Select(x => x.ToSidebarModel()).ToList();
+                
+                movieDataModel.MovieSidebar = _sidebarServise.GetSidebarData();
 
                 return View(movieDataModel);
             }

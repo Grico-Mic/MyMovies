@@ -8,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Movies.Servises;
 using MyMovies.Repositories;
 using MyMovies.Repositories.Interfaces;
+using MyMovies.Services;
+using MyMovies.Services.Interfaces;
 using MyMovies.Servises;
 using MyMovies.Servises.Interfaces;
 using System;
@@ -60,6 +62,7 @@ namespace MyMovies
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<ICommentsService, CommentsService>();
+            services.AddTransient<ISidebarService, SidebarService>();
 
             services.AddTransient<IMoviesRepository, MoviesRepository>();
             services.AddTransient<IUsersRepository, UsersRepository>();
