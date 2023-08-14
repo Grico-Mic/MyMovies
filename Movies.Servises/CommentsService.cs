@@ -42,5 +42,15 @@ namespace MyMovies.Servises
             }
             return response;
         }
+
+        public void Delete(Comment comment)
+        {
+            _commentsRepository.Delete(comment);
+        }
+
+        public Comment GetById(int id)
+        {
+            return _commentsRepository.GetById(id);
+        }
     }
 }

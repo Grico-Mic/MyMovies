@@ -44,6 +44,7 @@ namespace MyMovies.Mappings
         {
             return new MovieCommentModel()
             {
+                Id = comment.Id,
                 Message = comment.Message,
                 Username = comment.User.Username,
                 DateCreated = comment.DateCreated
