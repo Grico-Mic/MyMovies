@@ -2,7 +2,7 @@
 
 
 <h2>Top 5 Movies</h2>
-@foreach (var movie in Model.TopRecipes)
+@foreach (var movie in Model.TopMovies)
 {
     <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">
         <div class="movieSidebarCard">
@@ -15,7 +15,7 @@
 
 
 <h2>Top 5 Recent Movies</h2>
-@foreach (var movie in Model.MostRecentRecipes)
+@foreach (var movie in Model.MostRecentMovies)
 {
     <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">
         <div class="movieSidebarCard">

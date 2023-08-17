@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Movies.Servises;
+using MyMovies.Common.Options;
 using MyMovies.Repositories;
 using MyMovies.Repositories.Interfaces;
 using MyMovies.Services;
@@ -32,19 +33,23 @@ namespace MyMovies
            // services.AddDbContext<MyMoviesDbContext>(x => x.UseLazyLoadingProxies()
            //.UseSqlServer("Server=DESCTOP-V9GRIC;Database=MyMovies;Trusted_Connection=true;"));
 
-            services.AddDbContext<MyMoviesDbContext>(x => x.UseSqlServer("Server=DESCTOP-V9GRIC;Database=MyMovies;Trusted_Connection=true;"));
+            services.AddDbContext<MyMoviesDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("MyMovies")));
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
                 options =>
                 {
-                    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(int.Parse(Configuration["CookieExpirationPeriod"]));
                     options.SlidingExpiration = true;
                     options.LoginPath = "/Auth/SignIn";
                     options.AccessDeniedPath = "/Auth/AccessDenied";
                 }
 
                 );
-            
+
+            //configure options
+            services.Configure<SidebarConfig>(Configuration.GetSection("SidebarConfig"));
+
+
             services.AddAuthorization(options =>
                 {
                     options.AddPolicy("IsAdmin", policy =>
