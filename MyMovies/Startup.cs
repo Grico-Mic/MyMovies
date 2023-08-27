@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Movies.Servises;
 using MyMovies.Common.Options;
+using MyMovies.Custom;
 using MyMovies.Repositories;
 using MyMovies.Repositories.Interfaces;
 using MyMovies.Services;
@@ -86,7 +87,7 @@ namespace MyMovies
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Info/InternalError");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -97,6 +98,8 @@ namespace MyMovies
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<ExceptionLogingMidleware>();
+            app.UseMiddleware<RequestResponseLogMidleware>();
 
             app.UseEndpoints(endpoints =>
             {
