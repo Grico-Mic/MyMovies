@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyMovies.Common.Exceptions;
+using MyMovies.Common.Models;
+using MyMovies.Common.Services;
 using MyMovies.Mappings;
 using MyMovies.Models;
 using MyMovies.Services;
@@ -16,17 +18,20 @@ namespace MyMovies.Controllers
     [Authorize(Policy = "IsAdmin")]
     public class MoviesController : Controller
     {
-       
+        private readonly ILogService _logService;
         private IMoviesServise _servise { get; set; }
         private ISidebarService _sidebarServise { get; set; }
-        public MoviesController(IMoviesServise service , ISidebarService _sidebarService)
+        public MoviesController(IMoviesServise service , ISidebarService _sidebarService, ILogService logService)
         {
             _servise = service;
-            _sidebarServise = _sidebarService;  
+            _sidebarServise = _sidebarService;
+            _logService = logService;
         }
         [AllowAnonymous]
         public IActionResult Overview(string title)
         {
+          
+
            var movies =  _servise.GetMovieByTitle(title);
            
 
@@ -98,6 +103,10 @@ namespace MyMovies.Controllers
             {
                 var domainModel = movie.ToModel();
                 _servise.CreateMovie(domainModel);
+
+                var userId = User.FindFirst("Id");
+                var logData = new LogData() { Type = LogType.Info , DateCreated = DateTime.Now, Message = $"User with id {userId} created new movie with title {movie.Title}."} ;
+                _logService.Log(logData);
                 return RedirectToAction("ManageOverview", new { SuccessMessage = "The movie was created successfully."});
             }
             

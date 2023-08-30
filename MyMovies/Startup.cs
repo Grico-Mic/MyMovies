@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Movies.Servises;
 using MyMovies.Common.Options;
+using MyMovies.Common.Services;
 using MyMovies.Custom;
 using MyMovies.Repositories;
 using MyMovies.Repositories.Interfaces;
@@ -69,6 +70,7 @@ namespace MyMovies
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<ISidebarService, SidebarService>();
+            services.AddTransient<ILogService, LogService>();
 
             services.AddTransient<IMoviesRepository, MoviesRepository>();
             services.AddTransient<IUsersRepository, UsersRepository>();

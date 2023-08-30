@@ -1,0 +1,2 @@
+{"Type":0,"Message":"{\"RequestPath\":\"/\"}","DateCreated":"2023-08-30T17:56:55.5941746+02:00"}
+{"Type":0,"Message":"{\"ResponceStatusCode\":\"200\"}","DateCreated":"2023-08-30T17:57:08.5130029+02:00"}
